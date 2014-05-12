@@ -1,4 +1,8 @@
 DemoApp::Application.routes.draw do
+  
+  root "welcome#index"
+  get "welcome/index"
+
   resources :comments
 
   resources :societies
