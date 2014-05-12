@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  type: 
+  content: MyText
+  image_url: MyString
+  ticket_price: 9.99
+  ticket_number: 1
+
+two:
+  title: MyString
+  type: 
+  content: MyText
+  image_url: MyString
+  ticket_price: 9.99
+  ticket_number: 1

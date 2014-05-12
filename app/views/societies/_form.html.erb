@@ -1,0 +1,45 @@
+<%= form_for(@society) do |f| %>
+  <% if @society.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@society.errors.count, "error") %> prohibited this society from being saved:</h2>
+
+      <ul>
+      <% @society.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :club_name %><br>
+    <%= f.text_field :club_name %>
+  </div>
+  <div class="field">
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.text_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :admin_name %><br>
+    <%= f.text_field :admin_name %>
+  </div>
+  <div class="field">
+    <%= f.label :admin_phone %><br>
+    <%= f.text_field :admin_phone %>
+  </div>
+  <div class="field">
+    <%= f.label :admin_email %><br>
+    <%= f.text_field :admin_email %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
