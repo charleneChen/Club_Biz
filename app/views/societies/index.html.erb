@@ -1,24 +1,26 @@
-<h1>Listing societies</h1>
-
-<table>
+<%- model_class = Society -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Club name</th>
-      <th>Username</th>
-      <th>Password</th>
-      <th>Admin name</th>
-      <th>Admin phone</th>
-      <th>Admin email</th>
-      <th>Description</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:club_name) %></th>
+      <th><%= model_class.human_attribute_name(:username) %></th>
+      <th><%= model_class.human_attribute_name(:password) %></th>
+      <th><%= model_class.human_attribute_name(:admin_name) %></th>
+      <th><%= model_class.human_attribute_name(:admin_phone) %></th>
+      <th><%= model_class.human_attribute_name(:admin_email) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @societies.each do |society| %>
       <tr>
+        <td><%= link_to society.id, society_path(society) %></td>
         <td><%= society.club_name %></td>
         <td><%= society.username %></td>
         <td><%= society.password %></td>
@@ -26,16 +28,21 @@
         <td><%= society.admin_phone %></td>
         <td><%= society.admin_email %></td>
         <td><%= society.description %></td>
-        <td><%= link_to 'Show', society %></td>
-        <td><%= link_to 'Edit', edit_society_path(society) %></td>
-        <td><%= link_to 'Destroy', society, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l society.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_society_path(society), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      society_path(society),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'Back to Home page', welcome_index_path %>
-|
-<%= link_to 'New Society', new_society_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_society_path,
+            :class => 'btn btn-primary' %>

@@ -1,45 +1,50 @@
-<%= form_for(@society) do |f| %>
-  <% if @society.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@society.errors.count, "error") %> prohibited this society from being saved:</h2>
-
-      <ul>
-      <% @society.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @society, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :club_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :club_name, :class => 'text_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :username, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :username, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :password, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :password, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :admin_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :admin_name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :admin_phone, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :admin_phone, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :admin_email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :admin_email, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :description, :class => 'text_field' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :club_name %><br>
-    <%= f.text_field :club_name %>
-  </div>
-  <div class="field">
-    <%= f.label :username %><br>
-    <%= f.text_field :username %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.text_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :admin_name %><br>
-    <%= f.text_field :admin_name %>
-  </div>
-  <div class="field">
-    <%= f.label :admin_phone %><br>
-    <%= f.text_field :admin_phone %>
-  </div>
-  <div class="field">
-    <%= f.label :admin_email %><br>
-    <%= f.text_field :admin_email %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                societies_path, :class => 'btn' %>
   </div>
 <% end %>

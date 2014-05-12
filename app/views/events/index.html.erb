@@ -1,39 +1,46 @@
-<h1>Listing events</h1>
-
-<table>
+<%- model_class = Event -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Type</th>
-      <th>Content</th>
-      <th>Image url</th>
-      <th>Ticket price</th>
-      <th>Ticket number</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:type) %></th>
+      <th><%= model_class.human_attribute_name(:content) %></th>
+      <th><%= model_class.human_attribute_name(:image_url) %></th>
+      <th><%= model_class.human_attribute_name(:ticket_price) %></th>
+      <th><%= model_class.human_attribute_name(:ticket_number) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @events.each do |event| %>
       <tr>
+        <td><%= link_to event.id, event_path(event) %></td>
         <td><%= event.title %></td>
         <td><%= event.type %></td>
         <td><%= event.content %></td>
         <td><%= event.image_url %></td>
         <td><%= event.ticket_price %></td>
         <td><%= event.ticket_number %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l event.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_event_path(event), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      event_path(event),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'Back to Home page', welcome_index_path %>
-|
-<%= link_to 'New Event', new_event_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_event_path,
+            :class => 'btn btn-primary' %>
