@@ -1,7 +1,9 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+SWEN30006 Software Modelling & Desgin
+University of Melbourne
+
+project: Club-Biz
 
 Things you may want to cover:
 
