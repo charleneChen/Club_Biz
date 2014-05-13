@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem "paperclip", "~> 4.1"
+
 gem "therubyracer"
 gem "less-rails" 
 gem "twitter-bootstrap-rails"

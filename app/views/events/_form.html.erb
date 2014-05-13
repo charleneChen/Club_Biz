@@ -1,34 +1,43 @@
-<%= form_for @event, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for @event, :html => { :class => 'form-horizontal', :multipart => true} do |f| %>
   <div class="control-group">
     <%= f.label :title, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :title, :class => 'text_field' %>
     </div>
   </div>
+
   <div class="control-group">
     <%= f.label :type, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :type, :class => 'text_field' %>
     </div>
   </div>
+
   <div class="control-group">
     <%= f.label :content, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :content, :class => 'text_field' %>
+      <%= f.text_area :content, :size => "30x10" %>
     </div>
   </div>
+
   <div class="control-group">
-    <%= f.label :image_url, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :image_url, :class => 'text_field' %>
-    </div>
+    <%= f.fields_for :event_images do |builder| %>
+      <% if builder.object.new_record? %>
+      <%= builder.label :photo, "Image File" ,:class => 'control-label'%>
+      <div class="controls">
+        <%= builder.file_field :photo %>
+      <% end %>
+      </div>
+    <% end %>
   </div>
+
   <div class="control-group">
     <%= f.label :ticket_price, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :ticket_price, :class => 'text_field' %>
     </div>
   </div>
+
   <div class="control-group">
     <%= f.label :ticket_number, :class => 'control-label' %>
     <div class="controls">
@@ -41,4 +50,5 @@
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 events_path, :class => 'btn' %>
   </div>
+
 <% end %>

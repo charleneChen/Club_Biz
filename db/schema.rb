@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140512051308) do
+ActiveRecord::Schema.define(version: 20140513082624) do
 
   create_table "comments", force: true do |t|
     t.text     "content"
@@ -19,11 +19,20 @@ ActiveRecord::Schema.define(version: 20140512051308) do
     t.datetime "updated_at"
   end
 
+  create_table "event_images", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.integer  "event_id"
+  end
+
   create_table "events", force: true do |t|
     t.string   "title"
     t.string   "type"
     t.text     "content"
-    t.string   "image_url"
     t.decimal  "ticket_price"
     t.integer  "ticket_number"
     t.datetime "created_at"

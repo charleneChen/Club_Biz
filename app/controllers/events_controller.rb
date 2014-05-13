@@ -15,10 +15,13 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    3.times {@event.event_images.build} #added this
   end
 
   # GET /events/1/edit
   def edit
+    @event = Event.find(params[:id])
+    3.times { @event.event_images.build } # … and this
   end
 
   # POST /events
