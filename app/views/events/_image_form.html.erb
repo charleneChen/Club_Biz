@@ -1,0 +1,15 @@
+<%#<%= fields_for :event_images do |builder| %>
+<%#<% for event_image in @event.event_images %>
+
+<%= fields_for 'event[event_image]', image_form do |builder| %>
+    <% if builder.object.new_record? %>
+    <%= builder.label :photo, "Image File" ,:class => 'control-label'%>
+    <div class="controls">
+        <%= builder.file_field :photo %>
+    </div>
+    <% end %>
+    <%#<% end %>
+<% end %>
+<%#<%= link_to_function "remove", "this.up('.image').remove()" %>
+
+

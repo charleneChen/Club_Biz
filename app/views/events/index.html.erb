@@ -7,12 +7,15 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
-      <th><%= model_class.human_attribute_name(:type) %></th>
+      <th><%= model_class.human_attribute_name(:event_type) %></th>
       <th><%= model_class.human_attribute_name(:content) %></th>
+      <th><%= model_class.human_attribute_name(:date) %></th>
+      <th><%= model_class.human_attribute_name(:time) %></th>
+      <th><%= model_class.human_attribute_name(:venue) %></th>
       <th><%= model_class.human_attribute_name(:ticket_price) %></th>
       <th><%= model_class.human_attribute_name(:ticket_number) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th class="span2"><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
@@ -20,8 +23,11 @@
       <tr>
         <td><%= link_to event.id, event_path(event) %></td>
         <td><%= event.title %></td>
-        <td><%= event.type %></td>
+        <td><%= event.event_type %></td>
         <td><%= event.content %></td>
+        <td><%= event.date.strftime("%A, %d %B, %Y") %></td>
+        <td><%= l event.time, :format => :short %></td>
+        <td><%= event.venue %></td>
         <td><%= event.ticket_price %></td>
         <td><%= event.ticket_number %></td>
         <td><%=l event.created_at %></td>

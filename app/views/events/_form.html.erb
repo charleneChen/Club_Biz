@@ -7,29 +7,44 @@
   </div>
 
   <div class="control-group">
-    <%= f.label :type, :class => 'control-label' %>
+    <%= f.label :event_type, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :type, :class => 'text_field' %>
+      <%= f.text_field :event_type, :class => 'text_field' %>
     </div>
   </div>
 
   <div class="control-group">
     <%= f.label :content, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :content, :size => "30x10" %>
+      <%= f.text_area :content, :rows => 10, :class => 'text_filed'%>
     </div>
   </div>
 
   <div class="control-group">
-    <%= f.fields_for :event_images do |builder| %>
-      <% if builder.object.new_record? %>
-      <%= builder.label :photo, "Image File" ,:class => 'control-label'%>
-      <div class="controls">
-        <%= builder.file_field :photo %>
-      <% end %>
-      </div>
-    <% end %>
+    <%= f.label :date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :date %>
+    </div>
   </div>
+
+  <div class="control-group">
+    <%= f.label :time, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.time_select :time %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :venue, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :venue %>
+    </div>
+  </div>
+  
+  <div class="control-group" id="images">
+    <%= render :partial=> 'image_form', :collection => @event.event_images %>
+  </div>
+  
 
   <div class="control-group">
     <%= f.label :ticket_price, :class => 'control-label' %>

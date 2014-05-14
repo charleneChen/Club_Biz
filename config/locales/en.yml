@@ -21,3 +21,8 @@
 
 en:
   hello: "Hello world"
+
+  #https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/en.yml
+  time:
+    formats:
+      short: ! '%H:%M %p'

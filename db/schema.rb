@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140513082624) do
+ActiveRecord::Schema.define(version: 20140513123615) do
 
   create_table "comments", force: true do |t|
     t.text     "content"
@@ -31,12 +31,15 @@ ActiveRecord::Schema.define(version: 20140513082624) do
 
   create_table "events", force: true do |t|
     t.string   "title"
-    t.string   "type"
+    t.string   "event_type"
     t.text     "content"
     t.decimal  "ticket_price"
     t.integer  "ticket_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "date"
+    t.time     "time"
+    t.string   "venue"
   end
 
   create_table "societies", force: true do |t|

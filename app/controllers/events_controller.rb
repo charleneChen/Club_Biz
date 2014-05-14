@@ -15,13 +15,13 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
-    3.times {@event.event_images.build} #added this
+    1.times {@event.event_images.build} #added this
   end
 
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
-    3.times { @event.event_images.build } # … and this
+    1.times { @event.event_images.build } # … and this
   end
 
   # POST /events
@@ -72,6 +72,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title, :type, :content, :image_url, :ticket_price, :ticket_number)
+      params.require(:event).permit(:title, :event_type, :content, 
+        :date, :time, :venue, :event_images, :ticket_price, :ticket_number)
     end
 end
