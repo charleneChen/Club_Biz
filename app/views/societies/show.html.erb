@@ -1,33 +1,136 @@
 <%- model_class = Society -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+
+<div class="row">
+  <div class="span9" role="main">
+
+    <div class="page-header">
+      <h1><%= @society.club_name %> Profile</h1>
+    </div>
+
+    <div class="tab-content">
+        <div id="panel-100674">
+          <h4>About us</h4>
+          <p>
+            <%= @society.description %>
+          </p>
+        </div>
+
+        <!--<div id="panel-673713">-->
+          <!--<h4>Profile</h4>-->
+          <!--<p>-->
+            <!--<%= @society.description %>-->
+          <!--</p>-->
+        <!--</div>-->
+    </div>
+
+    <!--<div class="tabbable tabs-right" id="tabs-978216">-->
+      <!--<ul class="nav nav-tabs">-->
+        <!--<li>-->
+          <!--<a href="#panel-100674" data-toggle="tab">Section 1</a>-->
+        <!--</li>-->
+        <!--<li class="active">-->
+          <!--<a href="#panel-673713" data-toggle="tab">Section 2</a>-->
+        <!--</li>-->
+      <!--</ul>-->
+      <!--<div class="tab-content">-->
+        <!--<div class="tab-pane" id="panel-100674">-->
+          <!--<p>-->
+            <!--I'm in Section 1.-->
+          <!--</p>-->
+        <!--</div>-->
+        <!--<div class="tab-pane active" id="panel-673713">-->
+          <!--<p>-->
+            <!--Howdy, I'm in Section 2.-->
+          <!--</p>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <div>
+      <h4>Events</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Id</th>
+            <th class="span2"><%=t '.actions', :default => t("helpers.actions") %></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @society.events.each do |event| %>
+          <tr>
+            <td><%= event.title %></td>
+            <td><%= event.event_type %></td>
+            <td><%= event.id %></td>
+            <td>
+              <%= link_to 'Remove', [event.society, event],
+                            method: :delete,
+                            data: { confirm: 'Are you sure?' } %>
+              <%#<%= link_to 'Edit', edit_society_event_path(@society) %>
+              <%#<%= link_to 'Edit', edit_society__event_path %>
+              <%= link_to 'View', society_event_path(@society, event) %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+
+      </table>
+    </div>
+
+    <!-- <div class="form-actions">
+      <%#<%= link_to t('.back', :default => t("helpers.links.back")),
+                  societies_path, :class => 'btn'  %>
+      <%#<%= link_to t('.edit', :default => t("helpers.links.edit")),
+                  edit_society_path(@society), :class => 'btn' %>
+      <%#<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                  society_path(@society),
+                  :method => 'delete',
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-danger' %>
+    </div> -->
+  </div>
+  <div class="span3" style="padding-top: 75px;">
+
+
+
+    <div>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active">
+          <a href="#panel-100674">Home</a>
+        </li>
+        <li>
+          <a href="#panel-673713">Profile</a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="badge pull-right">3</span>
+              Messages
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="well">
+      <h4>Admin</h4>
+      <ul>
+        <li><%= @society.username %></li>
+        <li><%= @society.password %></li>
+        <li><%= @society.admin_name %></li>
+        <li><%= @society.admin_phone %></li>
+        <li><%= @society.admin_email %></li>
+      </ul>
+    </div>
+    
+    <div>
+      <p align="center">
+        <!--<button class="btn btn-default btn-lg" role="button">-->
+          <%#<%= link_to 'new event', :controller => 'events', :action => 'new' %>
+          <%= link_to 'new event', new_society_event_path(@society), :class=>"btn" %>
+        <!--</button>-->
+      </p>
+    </div>
+
+  </div>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:club_name) %>:</strong></dt>
-  <dd><%= @society.club_name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:username) %>:</strong></dt>
-  <dd><%= @society.username %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:password) %>:</strong></dt>
-  <dd><%= @society.password %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:admin_name) %>:</strong></dt>
-  <dd><%= @society.admin_name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:admin_phone) %>:</strong></dt>
-  <dd><%= @society.admin_phone %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:admin_email) %>:</strong></dt>
-  <dd><%= @society.admin_email %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @society.description %></dd>
-</dl>
-
-<div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              societies_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_society_path(@society), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              society_path(@society),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
-</div>

@@ -1,5 +1,6 @@
 class SocietiesController < ApplicationController
   before_action :set_society, only: [:show, :edit, :update, :destroy]
+  
 
   # GET /societies
   # GET /societies.json

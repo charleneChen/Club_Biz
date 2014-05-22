@@ -35,6 +35,7 @@
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 
     <%= javascript_include_tag "application" %>
+
   </head>
   <body>
 
@@ -60,18 +61,15 @@
     </div>
 
     <div class="container">
-      <div class="row">
-        <div class="col-sm-8 blog main">
-          <%= bootstrap_flash %>
-          <%= yield %>
-        </div>    
-      </div><!--/row-->
-
-      <footer>
-        <p align="center">&copy; University of Melbourne 2014</p>
-      </footer>
-
+        <%= bootstrap_flash %>
+        <%= yield %>
     </div> <!-- /container -->
+    
+    <!-- /footer -->
+    <footer style="text-align:center;">
+      &copy; University of Melbourne 2014
+    </footer>
+    
 
 
   </body>

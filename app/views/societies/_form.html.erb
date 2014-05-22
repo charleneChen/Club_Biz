@@ -1,4 +1,16 @@
 <%= form_for @society, :html => { :class => 'form-horizontal' } do |f| %>
+
+    <% if @society.errors.any? %>
+        <div class="alert alert-error">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <ul>
+            <% @society.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
   <div class="control-group">
     <%= f.label :club_name, :class => 'control-label' %>
     <div class="controls">

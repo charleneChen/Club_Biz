@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  #http_basic_authenticate_with name: "lian",
+  #  password: "lian", only: :destroy
 
   # GET /comments
   # GET /comments.json
@@ -10,10 +12,16 @@ class CommentsController < ApplicationController
   # GET /comments/1
   # GET /comments/1.json
   def show
+    #@society = Society.find(params[:society_id])#add this
+    #@event = Event.find(params[:id]) #added this
+    @event = Event.find(params[:event_id])
+    @comment = Comment.find(params[:id])
   end
 
   # GET /comments/new
   def new
+    #@society = Society.find(params[:society_id]) #added this
+    #@event = Event.find(params[:event_id]) # and this
     @comment = Comment.new
   end
 
@@ -24,11 +32,14 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(comment_params)
+    @society = Society.find(params[:society_id]) #added this
+    @event = Event.find(params[:event_id])
+    @comment = @event.comments.create(comment_params)
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        #format.html { redirect_to event_path(@event), notice: 'Comment was successfully created.' }
+        format.html { redirect_to society_event_path(@society, @event), notice: 'Comment was successfully created.' }
         format.json { render action: 'show', status: :created, location: @comment }
       else
         format.html { render action: 'new' }
@@ -54,9 +65,13 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
+    @society = Society.find(params[:society_id]) #added this
+    @event = Event.find(params[:event_id])
+    @comment = @event.comments.find(params[:id])
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url }
+      #format.html { redirect_to event_path(@event) }
+      format.html { redirect_to society_event_path(@society, @event), notice: 'Comment was successfully deleted.' } #path changed
       format.json { head :no_content }
     end
   end

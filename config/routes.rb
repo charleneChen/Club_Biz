@@ -3,11 +3,15 @@ DemoApp::Application.routes.draw do
   root "welcome#index"
   get "welcome/index"
 
-  resources :comments
+  resources :societies do
+    resources :events do
+      resources :comments
+    end
+  end
 
-  resources :societies
-
-  resources :events
+  resources :events do
+    resources :comments
+  end
 
   resources :students
 

@@ -1,30 +1,15 @@
 == README
 
 SWEN30006 Software Modelling & Desgin
-University of Melbourne
+Master of Engineering(Software) University of Melbourne
+Author: Charlene Chen
+Contact:satikey@gmail.com
 
 project: Club-Biz
 
-Things you may want to cover:
+Things that have been changed:
 
-* Ruby version
+* one society can create many events
+* can add many comments to an event and also can delete comments
+* can upload many images for an event(still need to limit the number of images!!!)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.

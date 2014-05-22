@@ -1,50 +1,112 @@
 <%- model_class = Event -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+
+<div class="row">
+  <div class="span9" role="main">
+
+    <div class="page-header" style="margin-bottom:20px;">
+      <h1>
+        <%=t '.title', :default => model_class.model_name.human.pluralize.titleize %>
+      </h1>
+    </div>
+    <div class="row">
+      <%#<% @events.each do |event| %>
+      <!--<div class="span3" style="margin-top:10px;">-->
+        <!--<%#<%= render :partial => 'list', :locals => {:event=>event} %>-->
+      <!--</div>-->
+      <%#<% end %>
+      <% @societies.each do |society| %>
+        <% society.events.each do |event| %>
+          <div class="span3" style="margin-top:10px;">
+            <%#<%= render :partial => 'list', :locals => {:event=>event} %>
+            <%= render :partial => 'list', :locals => {:society=>society, :event=>event} %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="span3" style="padding-top: 75px;">
+  
+    <form>
+      <div class="inpit-group">
+        <input style="width:200px;" type="text" class="form-control" placeholder="Search">
+        <span class="input-group-addon">
+          <button style="margin-bottom:10px;" class="btn btn-default" type="button">
+            <%= link_to 'Go!' %>
+          </button>
+        </span>
+      </div>
+    </form>
+    
+    <div class="well" style="padding: 8px 0;">
+      <ul class="nav nav-list">
+        <li class="nav-header">
+          Upcoming Events
+        </li>
+        <li>
+          <a href="#">event 1</a>
+        </li>
+        <li>
+          <a href="#">event 2</a>
+        </li>
+        ...
+      </ul>
+    </div>
+    
+    
+    <%#<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_event_path,
+            :class => 'btn btn-primary' %>
+    <%#<%= link_to t('.new', :default => t("helpers.links.new")),
+                new_society_event_path,
+                :class => 'btn btn-primary' %>
+  </div>
 </div>
-<table class="table table-striped">
+
+<!-- <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:title) %></th>
-      <th><%= model_class.human_attribute_name(:event_type) %></th>
-      <th><%= model_class.human_attribute_name(:content) %></th>
-      <th><%= model_class.human_attribute_name(:date) %></th>
-      <th><%= model_class.human_attribute_name(:time) %></th>
-      <th><%= model_class.human_attribute_name(:venue) %></th>
-      <th><%= model_class.human_attribute_name(:ticket_price) %></th>
-      <th><%= model_class.human_attribute_name(:ticket_number) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th class="span2"><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th><%#<%= model_class.human_attribute_name(:id) %></th>
+      <th><%#<%= model_class.human_attribute_name(:title) %></th>
+      <th><%#<%= model_class.human_attribute_name(:event_type) %></th>
+      <th><%#<%= model_class.human_attribute_name(:content) %></th>
+      <th><%#<%= model_class.human_attribute_name(:date) %></th>
+      <th><%#<%= model_class.human_attribute_name(:time) %></th>
+      <th><%#<%= model_class.human_attribute_name(:venue) %></th>
+      <th><%#<%= model_class.human_attribute_name(:image) %></th>
+      <th><%#<%= model_class.human_attribute_name(:ticket_price) %></th>
+      <th><%#<%= model_class.human_attribute_name(:ticket_number) %></th>
+      <th><%#<%= model_class.human_attribute_name(:created_at) %></th>
+      <th class="span2"><%#<%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
-    <% @events.each do |event| %>
+    <%#<% @events.each do |event| %>
       <tr>
-        <td><%= link_to event.id, event_path(event) %></td>
-        <td><%= event.title %></td>
-        <td><%= event.event_type %></td>
-        <td><%= event.content %></td>
-        <td><%= event.date.strftime("%A, %d %B, %Y") %></td>
-        <td><%= l event.time, :format => :short %></td>
-        <td><%= event.venue %></td>
-        <td><%= event.ticket_price %></td>
-        <td><%= event.ticket_number %></td>
-        <td><%=l event.created_at %></td>
+        <td><%#<%= link_to event.id, event_path(event) %></td>
+        <td><%#<%= event.title %></td>
+        <td><%#<%= event.event_type %></td>
+        <td><%#<%= event.content %></td>
+        <td><%#<%= event.date.strftime("%A, %d %B, %Y") %></td>
+        <td><%#<%= l event.time, :format => :short %></td>
+        <td><%#<%= event.venue %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+          <%#<% event.event_images.each do |image| %>
+<%#<%= image_tag image.photo.url %>
+<%#<% end %>
+        </td>
+        <td><%#<%= event.ticket_price %></td>
+        <td><%#<%= event.ticket_number %></td>
+        <td><%#<%=l event.created_at %></td>
+        <td>
+          <%#<%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_event_path(event), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+<%#<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       event_path(event),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
-    <% end %>
+    <%#<% end %>
   </tbody>
-</table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_event_path,
-            :class => 'btn btn-primary' %>
+</table> -->

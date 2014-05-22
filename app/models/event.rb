@@ -1,13 +1,13 @@
 class Event < ActiveRecord::Base
 
-	has_many :comments, :dependent => :destroy
-	has_many :event_images, :dependent => :destroy
 	belongs_to :society
 
-	accepts_nested_attributes_for :event_images, 
-		:reject_if => lambda { |t| t['event_image'].nil? }
+	has_many :event_images, :dependent => :destroy
+	has_many :comments, :dependent => :destroy
 
-	validates :title, :event_type, :content, presence: true
+	accepts_nested_attributes_for :event_images, :reject_if => lambda { |a| a[:photo].blank? }, allow_destroy: true
+
+	validates :title, :event_type, :content, :venue, :ticket_price, :ticket_number, presence: true
 	validates :ticket_price, :ticket_number, numericality: {greater_than_or_equal_to: 0}
 	validates :title, uniqueness: true
 	validates :content, length: {maximum: 200}
