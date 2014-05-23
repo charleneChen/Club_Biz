@@ -18,7 +18,7 @@
         <!--<div id="panel-673713">-->
           <!--<h4>Profile</h4>-->
           <!--<p>-->
-            <!--<%= @society.description %>-->
+            <!--<%#<%= @society.description %>-->
           <!--</p>-->
         <!--</div>-->
     </div>
@@ -67,8 +67,7 @@
               <%= link_to 'Remove', [event.society, event],
                             method: :delete,
                             data: { confirm: 'Are you sure?' } %>
-              <%#<%= link_to 'Edit', edit_society_event_path(@society) %>
-              <%#<%= link_to 'Edit', edit_society__event_path %>
+              <%= link_to 'Edit', edit_society_event_path(@society, event) %>
               <%= link_to 'View', society_event_path(@society, event) %>
             </td>
           </tr>
