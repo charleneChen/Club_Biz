@@ -6,6 +6,7 @@
       <h1><%= @event.title %></h1>
     </div>
 
+    <!-- event images show -->
     <% count = @event.event_images.count %>
         <% if count != 0 %>
             <div class="carousel slide" id="carousel-544389">
@@ -83,6 +84,26 @@
                   :class => 'btn btn-danger' %>
     </div>
 
+  </div>
+
+  <div class="span3" style="padding-top:75px;">
+
+    <div>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active">
+          <a style="text-align: center;"><h5>Express your interest here</h5></a>
+        </li>
+        <li>
+          <a href="#">Follow this event</a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="badge pull-right"><%= @event.ticket_number %></span>
+            Available Tickets
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 
 </div>

@@ -7,44 +7,14 @@
       <h1><%= @society.club_name %> Profile</h1>
     </div>
 
-    <div class="tab-content">
-        <div id="panel-100674">
+    <div>
+        <div>
           <h4>About us</h4>
           <p>
             <%= @society.description %>
           </p>
         </div>
-
-        <!--<div id="panel-673713">-->
-          <!--<h4>Profile</h4>-->
-          <!--<p>-->
-            <!--<%#<%= @society.description %>-->
-          <!--</p>-->
-        <!--</div>-->
     </div>
-
-    <!--<div class="tabbable tabs-right" id="tabs-978216">-->
-      <!--<ul class="nav nav-tabs">-->
-        <!--<li>-->
-          <!--<a href="#panel-100674" data-toggle="tab">Section 1</a>-->
-        <!--</li>-->
-        <!--<li class="active">-->
-          <!--<a href="#panel-673713" data-toggle="tab">Section 2</a>-->
-        <!--</li>-->
-      <!--</ul>-->
-      <!--<div class="tab-content">-->
-        <!--<div class="tab-pane" id="panel-100674">-->
-          <!--<p>-->
-            <!--I'm in Section 1.-->
-          <!--</p>-->
-        <!--</div>-->
-        <!--<div class="tab-pane active" id="panel-673713">-->
-          <!--<p>-->
-            <!--Howdy, I'm in Section 2.-->
-          <!--</p>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
 
     <div>
       <h4>Events</h4>
@@ -55,6 +25,7 @@
             <th>Type</th>
             <th>Id</th>
             <th class="span2"><%=t '.actions', :default => t("helpers.actions") %></th>
+            <th class="span2">Share Event</th>
           </tr>
         </thead>
         <tbody>
@@ -70,6 +41,7 @@
               <%= link_to 'Edit', edit_society_event_path(@society, event) %>
               <%= link_to 'View', society_event_path(@society, event) %>
             </td>
+            <td><%= link_to 'Share', societies_path, :class=>'btn btn-info' %></td>
           </tr>
         <% end %>
         </tbody>
@@ -96,10 +68,10 @@
     <div>
       <ul class="nav nav-pills nav-stacked">
         <li class="active">
-          <a href="#panel-100674">Home</a>
+          <a href="#">Home</a>
         </li>
         <li>
-          <a href="#panel-673713">Profile</a>
+          <a href="#">Profile</a>
         </li>
         <li>
           <a href="#">
@@ -113,11 +85,11 @@
     <div class="well">
       <h4>Admin</h4>
       <ul>
-        <li><%= @society.username %></li>
-        <li><%= @society.password %></li>
-        <li><%= @society.admin_name %></li>
-        <li><%= @society.admin_phone %></li>
-        <li><%= @society.admin_email %></li>
+        <li>username: <%= @society.username %></li>
+        <li>password: <%= @society.password %></li>
+        <li>admin_name: <%= @society.admin_name %></li>
+        <li>admin_phone: <%= @society.admin_phone %></li>
+        <li>admin_email: <%= @society.admin_email %></li>
       </ul>
     </div>
     
