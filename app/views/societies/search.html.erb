@@ -1,0 +1,12 @@
+ <ul>
+ 
+    <% @societies.each do |society| %>
+  <li><%= link_to society.club_name, 
+    :action => 'show', :id => society.id  %></li>
+   <% end %>
+    
+    
+  
+  
+  
+  </ul>

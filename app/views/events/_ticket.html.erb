@@ -1,0 +1,5 @@
+<%= form_tag :controller => 'events', :action => 'ticket', :method => 'get' do %>
+     <%= text_field_tag :ticket, params[:ticket], :id => 'ticket_field', :class=>'span1' %>
+      <%= submit_tag "Reserve", :name => nil, :class=>'btn', :style=>"margin-bottom:10px;" %>
+      <%#<%= link_to_function "Clear", "$('ticket_field').clear()" %>
+  <% end %> 

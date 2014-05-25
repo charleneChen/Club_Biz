@@ -1,0 +1,32 @@
+<%= form_for @group do |f| %>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Club Name</th>
+        <th>Description</th>
+        <th>Created at</th>
+        <th>Shared with</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <% for society in Society.all %>
+          <tr>
+            <td>
+              <%#<%= link_to society.id, society_path(society) %>
+              <%= society.id %>
+            </td>
+            <td><%= society.club_name %></td>
+            <td><%= society.description %></td>
+            <td><%=l society.created_at %></td>
+            <td>
+              <%= check_box_tag 'group[society_ids][]', society.id, @group.societies.include?(society) %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <%= f.submit nil, :class => 'btn btn-primary'  %>
+<% end %>

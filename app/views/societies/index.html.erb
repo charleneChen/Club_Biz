@@ -1,7 +1,18 @@
 <%- model_class = Society -%>
+<div class="pull-right">
+  <%= form_tag :controller => 'societies', :action => 'search', :method => 'get' do %>
+      <%= text_field_tag :search, params[:search], :id => 'search_field' %>
+      <%= submit_tag "Search", :name => nil, :class=>'btn', :style=>"margin-bottom:10px;" %>
+  <% end %>
+</div>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <!--<ul><div id="search">-->
+    <!--<%#<%= render :partial => 'societies/search' %>-->
+  <!--</div></ul>-->
+
 </div>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -15,11 +26,12 @@
       <th><%= model_class.human_attribute_name(:description) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
-      <th>choose to share an event</th>
+      <!--<th>Join Clubs</th>-->
     </tr>
   </thead>
   <tbody>
     <% @societies.each do |society| %>
+
       <tr>
         <td><%= link_to society.id, society_path(society) %></td>
         <td><%= society.club_name %></td>
@@ -39,12 +51,21 @@
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-mini btn-danger' %>
         </td>
-        <td><%= check_box_tag 'share' %></td>
+
       </tr>
     <% end %>
   </tbody>
 </table>
 
+
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_society_path,
             :class => 'btn btn-primary' %>
+
+
+<%#<%= link_to 'Confirm',
+            new_society_event_group_path,
+            :class => 'btn btn-primary' %>
+
+
+

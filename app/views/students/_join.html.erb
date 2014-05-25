@@ -1,0 +1,4 @@
+<%= form_for(current_student.memberships.build(society_id: @society.id)) do |f| %>
+    <div><%= f.hidden_field :followed_id %></div>
+    <%= f.submit "Follow", class: "btn btn-large btn-primary" %>
+<% end %>

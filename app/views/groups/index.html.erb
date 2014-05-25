@@ -1,0 +1,53 @@
+<%- model_class = Group -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<p><strong>Own Groups</strong></p>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Group_<%= model_class.human_attribute_name(:id) %></th>
+    <th>Group_<%= model_class.human_attribute_name(:name) %></th>
+    <th>Event_ID</th>
+    <th>Event_Name</th>
+    <th>Group_<%= model_class.human_attribute_name(:created_at) %></th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @society.events.each do |event| %>
+      <tr>
+        <td><%= link_to event.group.id, group_path(event.group) %></td>
+        <td><%= event.group.name %></td>
+        <td><%= event.id %></td>
+        <td><%=  event.title %></td>
+        <td><%=l event.group.created_at %></td>
+        <td><%= link_to 'Edit', edit_group_path(event.group) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<p><strong>Shared Groups</strong></p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+          <th><%= model_class.human_attribute_name(:id) %></th>
+          <th><%= model_class.human_attribute_name(:name) %></th>
+          <th><%= model_class.human_attribute_name(:created_at) %></th>
+          <!--<th>Actions</th>-->
+        </tr>
+    </thead>
+    <tbody>
+        <% @society.groups.each do |group| %>
+            <tr>
+              <td><%= link_to group.id %></td>
+              <td><%= group.name %></td>
+              <td><%=l group.created_at %></td>
+              <!--<td><%#<%= link_to 'Remove', group_path(group),
+                                method: :delete,
+                                data: { confirm: 'Are you sure?' } %></td>-->
+            </tr>
+        <% end %>
+    </tbody>
+</table>

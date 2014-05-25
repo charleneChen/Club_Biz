@@ -13,7 +13,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @society = Society.find(params[:society_id])#add this
+    @society = Society.find(params[:society_id])#add this, if uses path like this: society_event GET    /societies/:society_id/events/:id(.:format) events#show
     @event = Event.find(params[:id])
   end
 
@@ -77,6 +77,14 @@ class EventsController < ApplicationController
       #format.html { redirect_to events_path }
       format.json { head :no_content }
     end
+  end
+
+  def ticket
+    @tickets = Event.ticket params[:ticket]
+
+  end
+  def search
+    @events = Event.search params[:search]
   end
 
   private

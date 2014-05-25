@@ -16,8 +16,9 @@
         </div>
     </div>
 
+    <!--my own events-->
     <div>
-      <h4>Events</h4>
+      <h4>My Events</h4>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -41,8 +42,43 @@
               <%= link_to 'Edit', edit_society_event_path(@society, event) %>
               <%= link_to 'View', society_event_path(@society, event) %>
             </td>
-            <td><%= link_to 'Share', societies_path, :class=>'btn btn-info' %></td>
+            <td>
+              <%= link_to 'Share', new_society_event_group_path(@society, event), :class=>'btn btn-info' %>
+              <%#<%= link_to 'Share', societies_path, :class=>'btn btn-info' %>
+            </td>
           </tr>
+        <% end %>
+        </tbody>
+
+      </table>
+    </div>
+
+    <!--shared events-->
+    <div>
+      <h4>Shared Events(need to change)</h4>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Title</th>
+          <th>Type</th>
+          <th>Id</th>
+          <th class="span2"><%=t '.actions', :default => t("helpers.actions") %></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @society.groups.each do |group| %>
+            <tr>
+              <td><%= group.event.title %></td>
+              <td><%= group.event.event_type %></td>
+              <td><%= group.event.id %></td>
+              <td>
+                <%#<%= link_to 'Remove', [event.society, event],
+#                            method: :delete,
+                            data: { confirm: 'Are you sure?' } %>
+                <%#<%= link_to 'Edit', edit_society_event_path(@society, group.event) %>
+                <%= link_to 'View', society_event_path(@society, group.event) %>
+              </td>
+            </tr>
         <% end %>
         </tbody>
 
@@ -63,15 +99,16 @@
   </div>
   <div class="span3" style="padding-top: 75px;">
 
-
-
     <div>
       <ul class="nav nav-pills nav-stacked">
         <li class="active">
           <a href="#">Home</a>
         </li>
         <li>
-          <a href="#">Profile</a>
+          <a href="/societies/<%= @society.id %>/edit">Profile</a>
+        </li>
+        <li>
+          <a href="/societies/<%= @society.id %>/groups">Groups</a>
         </li>
         <li>
           <a href="#">

@@ -1,0 +1,10 @@
+<h1>Group Name: <%= @group.name %></h1>
+
+<div>
+  <p><strong>This group has added following societies:</strong></p>
+  <ul>
+    <% @group.societies.each do |group_member| %>
+        <li><%= group_member.club_name %></li>
+    <% end %>
+  </ul>
+</div>

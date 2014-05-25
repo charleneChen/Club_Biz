@@ -25,18 +25,23 @@
     </div>
   </div>
   <div class="span3" style="padding-top: 75px;">
-  
-    <form>
-      <div class="inpit-group">
-        <input style="width:200px;" type="text" class="form-control" placeholder="Search">
-        <span class="input-group-addon">
-          <button style="margin-bottom:10px;" class="btn btn-default" type="button">
-            <%= link_to 'Go!' %>
-          </button>
-        </span>
-      </div>
-    </form>
-    
+
+    <%= form_tag :controller => 'societies', :action => 'search', :method => 'get' do %>
+        <%= text_field_tag :search, params[:search], :id => 'search_field',:class=>'span2' %>
+        <%= submit_tag "Search", :name => nil, :class=>'btn', :style=>"margin-bottom:10px;" %>
+      <!--<div class="inpit-group">-->
+        <!--<input style="width:200px;" type="text" class="form-control" placeholder="Search">-->
+        <!--<span class="input-group-addon">-->
+          <!--<button style="margin-bottom:10px;" class="btn btn-default" type="button">-->
+            <!--<%#<%= link_to 'Go!' %>-->
+          <!--</button>-->
+        <!--</span>-->
+      <!--</div>-->
+    <% end %>
+
+
+
+
     <div class="well" style="padding: 8px 0;">
       <ul class="nav nav-list">
         <li class="nav-header">

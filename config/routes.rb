@@ -6,14 +6,48 @@ DemoApp::Application.routes.draw do
   resources :societies do
     resources :events do
       resources :comments
+      resource :group
     end
   end
 
   resources :events do
-    resources :comments
+    #resources :comments
+    resources :students
   end
 
-  resources :students
+  resources :societies do
+    resources :groups
+  end
+
+  resources :students do
+    #resources :events
+    #resources :societies
+  end
+
+  resources :groups
+
+  resources :sessions
+  match '/signup',  to: 'students#new', via: 'get'
+  match '/signin',  to: 'sessions#new', via: 'get'
+  match '/signout', to: 'sessions#destroy', via: 'delete'
+
+  resources :societies do
+    collection do
+      post '_search', :action => 'search'
+
+    end
+  end
+  resources :events do
+    collection do
+      post '_search', :action => 'search'
+    end
+  end
+  resources :events do
+    collection do
+      post '_ticket', :action => 'ticket'
+    end
+  end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

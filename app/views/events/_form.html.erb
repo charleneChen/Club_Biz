@@ -61,11 +61,14 @@
       <% if image.object.new_record? %>
         <%= image.label :photo, "Image File" ,:class => 'control-label'%>
         <div class="controls">
+          <%#<%= image.label :photo, "Image File" ,:class => 'control-label'%>
           <%= image.file_field :photo %>
         </div>
       <% else %>
+        <div class="controls">
         <%= image_tag image.object.photo.url(:thumb) %>
             <%= image.check_box :_destroy %>
+        </div>
       <% end %>
     <% end %>
   </div>
@@ -87,7 +90,7 @@
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%#<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                events_path, :class => 'btn' %>
+                society_event_path, :class => 'btn' %>
     <%#<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 society_path, :class => 'btn' %>
   </div>

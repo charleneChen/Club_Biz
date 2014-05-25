@@ -1,4 +1,16 @@
 <%= form_for @student, :html => { :class => 'form-horizontal' } do |f| %>
+
+    <% if @student.errors.any? %>
+        <div class="alert alert-error">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <ul>
+            <% @student.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
@@ -14,13 +26,25 @@
   <div class="control-group">
     <%= f.label :password, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :password, :class => 'text_field' %>
+      <%= f.password_field :password, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :password_confirmation, "Confirmation", :class => 'control-label' %>
+    <div class="controls">
+        <%= f.password_field :password_confirmation, :class => 'text_field' %>
     </div>
   </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
+    <% if signed_in? %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                students_path, :class => 'btn' %>
+                student_path(), :class => 'btn' %>
+    <% else %>
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                    events_path, :class => 'btn' %>
+    <% end %>
   </div>
 <% end %>

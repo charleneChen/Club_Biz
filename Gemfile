@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem "paperclip", "~> 4.1"
 
+gem 'bcrypt-ruby'
+
 gem "therubyracer"
 gem "less-rails" 
 gem "twitter-bootstrap-rails"

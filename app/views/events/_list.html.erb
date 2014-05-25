@@ -26,9 +26,10 @@
         Venue: <%= event.venue %>
       </p>
       <p>
-        <!--<button class="btn btn-default">-->
-          <%= link_to 'Detail', society_event_path(society, event), :class=>"btn" %>
-        <!--</button>-->
+        <!-- society_event GET    /societies/:society_id/events/:id(.:format)  events#show -->
+        <%= link_to 'Detail', society_event_path(society, event), :class=>"btn" %>
+        <!--  event GET    /events/:id(.:format) events#show  use this path: EventsController needs to change something-->
+        <%#<%= link_to 'Detail', event_path(event), :class=>"btn" %>
       </p>
   </div>
 </div>

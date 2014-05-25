@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140522035420) do
+ActiveRecord::Schema.define(version: 20140525085352) do
 
   create_table "comments", force: true do |t|
     t.text     "content"
@@ -44,6 +44,38 @@ ActiveRecord::Schema.define(version: 20140522035420) do
     t.integer  "society_id"
   end
 
+  create_table "followings", force: true do |t|
+    t.integer  "student_id"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups", force: true do |t|
+    t.string   "name"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groupships", force: true do |t|
+    t.integer  "group_id"
+    t.integer  "society_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "memberships", force: true do |t|
+    t.integer  "student_id"
+    t.integer  "society_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "memberships", ["society_id"], name: "index_memberships_on_society_id"
+  add_index "memberships", ["student_id", "society_id"], name: "index_memberships_on_student_id_and_society_id", unique: true
+  add_index "memberships", ["student_id"], name: "index_memberships_on_student_id"
+
   create_table "societies", force: true do |t|
     t.string   "club_name"
     t.string   "username"
@@ -62,6 +94,11 @@ ActiveRecord::Schema.define(version: 20140522035420) do
     t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "remember_token"
+    t.string   "password_digest"
+    t.string   "password_confirmation"
   end
+
+  add_index "students", ["remember_token"], name: "index_students_on_remember_token"
 
 end

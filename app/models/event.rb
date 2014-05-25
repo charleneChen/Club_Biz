@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
 
 	belongs_to :society
+  has_one :group
 
 	has_many :event_images, :dependent => :destroy
 	has_many :comments, :dependent => :destroy
@@ -13,4 +14,16 @@ class Event < ActiveRecord::Base
 	validates :content, length: {maximum: 200}
 	validates :title, length: {maximum: 50}
 	validates :event_type, length: {maximum: 10}
+
+  def self.search(search)
+    search_condition = "%" + search + "%"
+    find(:all, :conditions => ['title LIKE ? OR content LIKE ?', search_condition, search_condition])
+  end
+  def self.ticket(ticket)
+    ticket
+    event= Event.find_by(id=1)
+    event.ticket_number = event.ticket_number - ticket.to_i
+    event.save
+
+  end
 end

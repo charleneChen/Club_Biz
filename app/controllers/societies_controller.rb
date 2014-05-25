@@ -6,6 +6,8 @@ class SocietiesController < ApplicationController
   # GET /societies.json
   def index
     @societies = Society.all
+    @group = Group.new #added this for sharing an event?
+    #@student = current_student
   end
 
   # GET /societies/1
@@ -60,6 +62,11 @@ class SocietiesController < ApplicationController
       format.html { redirect_to societies_url }
       format.json { head :no_content }
     end
+  end
+
+  def search
+    @societies = Society.search params[:search]
+
   end
 
   private

@@ -1,5 +1,8 @@
 class StudentsController < ApplicationController
+  before_action :signed_in_user, only: [:edit, :update, :index]
+  before_action :correct_user,   only: [:edit, :update]
   before_action :set_student, only: [:show, :edit, :update, :destroy]
+
 
   # GET /students
   # GET /students.json
@@ -19,6 +22,7 @@ class StudentsController < ApplicationController
 
   # GET /students/1/edit
   def edit
+    #@student = Student.find(params[:id])
   end
 
   # POST /students
@@ -28,7 +32,9 @@ class StudentsController < ApplicationController
 
     respond_to do |format|
       if @student.save
-        format.html { redirect_to @student, notice: 'Student was successfully created.' }
+        sign_in @student #added this foe sign in
+        #format.html { redirect_to @student, notice: 'Student was successfully created.' }
+        format.html { redirect_to @student, notice: 'Welcome to the demo-app.' }
         format.json { render action: 'show', status: :created, location: @student }
       else
         format.html { render action: 'new' }
@@ -40,6 +46,7 @@ class StudentsController < ApplicationController
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json
   def update
+    #@student = Student.find(params[:id])
     respond_to do |format|
       if @student.update(student_params)
         format.html { redirect_to @student, notice: 'Student was successfully updated.' }
@@ -67,8 +74,18 @@ class StudentsController < ApplicationController
       @student = Student.find(params[:id])
     end
 
+    # Before filters
+    def signed_in_user
+      redirect_to signin_path, notice: "Please sign in." unless signed_in?
+    end
+
+    def correct_user
+      @student = Student.find(params[:id])
+      redirect_to(events_path) unless current_student?(@student)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:name, :email, :password)
+      params.require(:student).permit(:name, :email, :password, :password_confirmation)
     end
 end
