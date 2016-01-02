@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140525085352) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "comments", force: true do |t|
     t.text     "content"
     t.datetime "created_at"
@@ -72,9 +75,9 @@ ActiveRecord::Schema.define(version: 20140525085352) do
     t.datetime "updated_at"
   end
 
-  add_index "memberships", ["society_id"], name: "index_memberships_on_society_id"
-  add_index "memberships", ["student_id", "society_id"], name: "index_memberships_on_student_id_and_society_id", unique: true
-  add_index "memberships", ["student_id"], name: "index_memberships_on_student_id"
+  add_index "memberships", ["society_id"], name: "index_memberships_on_society_id", using: :btree
+  add_index "memberships", ["student_id", "society_id"], name: "index_memberships_on_student_id_and_society_id", unique: true, using: :btree
+  add_index "memberships", ["student_id"], name: "index_memberships_on_student_id", using: :btree
 
   create_table "societies", force: true do |t|
     t.string   "club_name"
@@ -99,6 +102,6 @@ ActiveRecord::Schema.define(version: 20140525085352) do
     t.string   "password_confirmation"
   end
 
-  add_index "students", ["remember_token"], name: "index_students_on_remember_token"
+  add_index "students", ["remember_token"], name: "index_students_on_remember_token", using: :btree
 
 end
